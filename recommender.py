@@ -27,8 +27,8 @@ genre_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
 # ---- COLLABORATIVE FILTERING (SVD from scratch) ----
 # Build user-movie ratings matrix
 # Limit to most active users and most rated movies for performance
-top_movies = ratings['movieId'].value_counts().head(2000).index
-top_users = ratings['userId'].value_counts().head(1000).index
+top_movies = ratings['movieId'].value_counts().head(500).index
+top_users = ratings['userId'].value_counts().head(200).index
 
 filtered = ratings[
     ratings['movieId'].isin(top_movies) &
@@ -46,7 +46,7 @@ ratings_norm = ratings_matrix.sub(ratings_matrix.mean(axis=1), axis=0)
 U, sigma, Vt = np.linalg.svd(ratings_norm.values, full_matrices=False)
 
 # Keep top 50 latent factors
-k = 50
+k = 20
 U_k = U[:, :k]
 sigma_k = np.diag(sigma[:k])
 Vt_k = Vt[:k, :]
