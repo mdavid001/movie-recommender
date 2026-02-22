@@ -26,7 +26,7 @@ function App() {
     setError("");
     setResults([]);
 
-    let url = `http://127.0.0.1:5000/recommend?title=${encodeURIComponent(movieTitle)}`;
+    let url = `https://movie-recommender-mkp9.onrender.com/recommend?title=${encodeURIComponent(movieTitle)}`;
     if (genre) url += `&genre=${genre}`;
     if (minRating) url += `&min_rating=${minRating}`;
     if (yearMin) url += `&year_min=${yearMin}`;
@@ -51,7 +51,7 @@ function App() {
   const feelingLucky = async () => {
     setLuckyLoading(true);
     try {
-      const res = await fetch("http://127.0.0.1:5000/random");
+      const res = await fetch("https://movie-recommender-mkp9.onrender.com/random");
       const data = await res.json();
       setTitle(data.title);
       await fetchRecommendations(data.title);
